@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+
+/opt/phpstorm/bin/phpstorm.sh $argv

@@ -1,1 +1,2 @@
 -Xmx2048m
+-Dide.ui.scale=0.8

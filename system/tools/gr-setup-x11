@@ -7,6 +7,6 @@ lxappearance &
 sleep 0.5
 kill -9 $last_pid
 # kill it
-if test (gr-resolution) = "1440"
-    set -U BIG_MONITOR 1
+if test (getResolution) = "1440"
+    set -Ux BIG_MONITOR 1
 end

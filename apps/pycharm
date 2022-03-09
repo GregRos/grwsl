@@ -1,0 +1,2 @@
+#!/usr/bin/fish
+/opt/pycharm/bin/pycharm.sh $argv
