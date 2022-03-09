@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+source ~/scripts/common.sh
+if [ "$#" -eq 0 ]; then
+  while read -p "Command: " cmd; do
+    wslview "https://explainshell.com/explain?cmd=$(url encode $cmd)"
+  done
+  echo "Bye!"
+elif [ "$#" -eq 1 ]; then
+  wslview "https://explainshell.com/explain?cmd=$(url encode $1)"
+else
+  echo "Usage"
+  echo "explain                  interactive mode."
+  echo "explain 'cmd -o | ...'   one quoted command to explain it."
+fi
+url

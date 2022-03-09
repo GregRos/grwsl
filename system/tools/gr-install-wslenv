@@ -1,0 +1,29 @@
+#!/usr/bin/fish
+set -Ux GRWSL /home/gr/grwsl/system
+begin
+    set -l grconfig "$GRWSL/config"
+    set -l config "$HOME/.config"
+    # X11 settings
+    ln -sf "$grconfig/.Xresources" "$HOME/.Xresources"
+    # Fish startup scripts
+    rm -f $config/fish/conf.d/*.gr.fish
+    
+    ln -sf "$grconfig/startup/env.gr.fish" "$config/fish/conf.d/z-00-env.gr.fish"
+    ln -sf "$grconfig/startup/wm.gr.fish" "$config/fish/conf.d/z-01-wm.gr.fish"
+    ln -sf "$grconfig/startup/interactive.gr.fish" "$config/fish/conf.d/z-10-aliases.gr.fish"
+
+    # fonts and resources
+    ln -sf "$grconfig/fonts.user.conf" "$HOME/.fonts.conf"
+    ln -sf "$grconfig/.fonts" "$HOME/.fonts"
+    sudo ln -sf "$grconfig/themes/cinnamon-cursor" "/usr/share/icons/cinnamon-cursor"
+    sudo ln -sf "$grconfig/fonts.system.conf" "/etc/fonts/local.conf"
+    
+    # application config files
+    set phpstorm_version "PhpStorm2021.3"
+    set pycharm_version "PyCharmCE2021.3"
+    ln -sf "$grconfig/app/phpstorm/phpstorm64.vmoptions" "$config/JetBrains/$phpstorm_version/phpstorm64.vmoptions"
+    ln -sf "$grconfig/app/pycharm/pycharm64.vmoptions" "$config/JetBrains/$pycharm_version/pycharm64.vmoptions"
+
+    
+end
+

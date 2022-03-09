@@ -1,0 +1,7 @@
+#!/usr/bin/fish
+
+if xdpyinfo | grep -B 2 resolution | string collect | string match -e "1440 pixels"
+    echo 1440
+else
+    echo 1080
+end

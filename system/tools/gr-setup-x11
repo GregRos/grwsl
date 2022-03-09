@@ -1,0 +1,12 @@
+#!/usr/bin/fish
+set -U DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')":0"
+xrdb -load ~/.Xresources
+# this is needed to reload GTK settings on X server startup
+lxappearance &
+ # wait until it loads
+sleep 0.5
+kill -9 $last_pid
+# kill it
+if test (gr-resolution) = "1440"
+    set -U BIG_MONITOR 1
+end

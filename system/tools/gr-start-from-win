@@ -1,0 +1,15 @@
+#!/usr/bin/fish
+begin
+    set SCRIPT_DIR /home/gr/scripts
+    set new_cwd $argv[1]
+    if string match -e "\\" "$new_cwd"
+        set new_cwd (wslpath -u "$new_cwd")
+    else if string match "~" "$new_cwd"
+        set new_cwd "$HOME"
+    end
+    if not string match _NONE_ "$new_cwd"
+        cd "$new_cwd"
+    end
+    set -gx DISPLAY "$DISPLAY"
+    $argv[2..-1]
+end
