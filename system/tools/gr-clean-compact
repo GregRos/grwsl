@@ -1,0 +1,7 @@
+#!/usr/bin/fish
+begin
+    echo "Clean Compact: Drop Page Cache and Reclaim..."
+    sudo bash -c "sync; echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory"
+    echo "Done!"
+end
+

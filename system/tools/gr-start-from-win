@@ -2,9 +2,10 @@
 begin
     set SCRIPT_DIR /home/gr/scripts
     set new_cwd $argv[1]
+    echo "$new_cwd" > ~/a.x
     if string match -e "\\" "$new_cwd"
         set new_cwd (wslpath -u "$new_cwd")
-    else if string match "~" "$new_cwd"
+    else if test "~" = "$new_cwd"
         set new_cwd "$HOME"
     end
     if not string match _NONE_ "$new_cwd"
