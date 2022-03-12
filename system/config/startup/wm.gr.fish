@@ -1,5 +1,5 @@
 begin
-    set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')":0"
+    set -x DISPLAY (ipconfig.exe | grep -Po '172\.\d*\.\d*\.\d*')":0"
     set -gx XDG_RUNTIME_DIR /tmp/runtime-gr/
     set -gx KDEDIR /usr
     set -gx QT_STYLE_OVERRIDE breeze

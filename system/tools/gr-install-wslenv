@@ -8,7 +8,10 @@ begin
     # Fish startup scripts
     rm -f $config/fish/conf.d/*.gr.fish
     
-    ln -sf "$grconfig/startup/env.gr.fish" "$config/fish/conf.d/z-00-env.gr.fish"
+    rm -f "$config/fish/conf.d/*.gr.fish"
+    sudo ln -sf "$grconfig/wsl.conf" "/etc/wsl.conf"
+    sudo ln -sf "$grconfig/resolv.conf" "/etc/resolv.conf"
+    ln -sf "$grconfig/startup/env.gr.fish" "$config/fish/conf.d/00-env.gr.fish"
     ln -sf "$grconfig/startup/wm.gr.fish" "$config/fish/conf.d/z-01-wm.gr.fish"
     ln -sf "$grconfig/startup/interactive.gr.fish" "$config/fish/conf.d/z-10-aliases.gr.fish"
 
@@ -25,7 +28,7 @@ begin
     ln -sf "$grconfig/app/pycharm/pycharm64.vmoptions" "$config/JetBrains/$pycharm_version/pycharm64.vmoptions"
 
     # create symlinks to specific Windows binaries instead of allowing them all
-    set winb "cmd.exe" "clip.exe" 
+    set winb "cmd.exe" "clip.exe" "ipconfig.exe"
     
     for bin in $winb
         ln -s "/mnt/c/Windows/System32/$bin" "$HOME/grwsl/apps/$bin"
