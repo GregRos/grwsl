@@ -2,6 +2,6 @@
 if set -q BIG_MONITOR
     set -gx GDK_DPI_SCALE 1.4
 else
-    set -gx GDK_DPI_SCALE 0.8
+    set -gx GDK_DPI_SCALE 0.5
 end
 /opt/smartgit/bin/smartgit.sh $argv
