@@ -8,12 +8,14 @@ begin
     # Fish startup scripts
     rm -f $config/fish/conf.d/*.gr.fish
     
-    rm -f "$config/fish/conf.d/*.gr.fish"
     sudo ln -sf "$grconfig/wsl.conf" "/etc/wsl.conf"
     sudo ln -sf "$grconfig/resolv.conf" "/etc/resolv.conf"
-    ln -sf "$grconfig/startup/env.gr.fish" "$config/fish/conf.d/00-env.gr.fish"
-    ln -sf "$grconfig/startup/wm.gr.fish" "$config/fish/conf.d/z-01-wm.gr.fish"
-    ln -sf "$grconfig/startup/interactive.gr.fish" "$config/fish/conf.d/z-10-aliases.gr.fish"
+    rm -f "$config/fish/conf.d/*.gr.fish"
+
+    for file in (status dirname)/../config/startup/*
+        ln -sf $file "$config/fish/conf.d/"(basename $file)
+    end
+
 
     # fonts and resources
     ln -sf "$grconfig/fonts.user.conf" "$HOME/.fonts.conf"
