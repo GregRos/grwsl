@@ -1,7 +1,21 @@
+function git-prompt-hint
+    echo "
+● - staged
+◧ - modified
+◇ - untracked
+⚑ - stash
+✖ - invalid
+✔ - clean
+    "
+end
 begin
+    # this fixes bad spacing on the char
+    set -gx __fish_git_prompt_char_dirtystate " ◧"
+    set -gx __fish_git_prompt_char_untrackedfiles " ◇"
+    set -gx __fish_git_prompt_char_stashstate " ⚑"
     fish_add_path -P /usr/local/go/bin \
         "$HOME/.config/yarn/global/node_modules/.bin" \
-        "$HOME/.local/bin" \
+        "$HOME/.local/bin" \    
         "$HOME/.fnm" \
         "$HOME/grwsl/system/tools" \
         "$HOME/grwsl/apps"
