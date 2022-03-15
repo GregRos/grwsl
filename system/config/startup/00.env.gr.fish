@@ -1,14 +1,4 @@
-function git-prompt-hint
-    echo "
-● - staged
-◧ - modified
-◇ - untracked
-⚑ - stash
-✖ - invalid
-✔ - clean
-    "
 
-end
 begin
     if status is-login
         set -gx XDG_RUNTIME_DIR /tmp/runtime-gr
