@@ -7,6 +7,11 @@ begin
     sleep 0.5
     kill -9 $last_pid
     # kill it
+    if test (getResolution) = 1440
+        set -Ux BIG_MONITOR 1
+    else
+        set -Ux BIG_MONITOR 0
+    end
 
     if test "$BIG_MONITOR" = 1
         set font_size 12

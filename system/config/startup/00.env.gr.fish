@@ -10,7 +10,7 @@ begin
             "$HOME/grwsl/system/tools" \
             "$HOME/grwsl/apps"
 
-        set -gx WINTOOLS (wslpath -u 'C:\Users\GregRosenbaum\Dropbox\__Wintools')
+        set -gx WINTOOLS /mnt/c/Users/GregRosenbaum/Dropbox/__Wintools        
         set -gx GOPATH $HOME/go
         set -gx NPM_TOKEN 64124ae3-05e2-4298-805c-1d8b19a4c2b3
         set -gx GCLOUD_ROOT /usr/lib/google-cloud-sdk

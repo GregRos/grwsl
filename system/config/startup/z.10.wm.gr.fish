@@ -2,11 +2,7 @@
 begin
     if status is-login
         set -gx DISPLAY (gr-display)
-        if test (getResolution) = 1440
-            set -Ux BIG_MONITOR 1
-        else
-            set -Ux BIG_MONITOR 0
-        end
+
         set -gx QT_STYLE_OVERRIDE breeze
         if test "$BIG_MONITOR" = 1
             set -gx GDK_DPI_SCALE 1.3

@@ -6,8 +6,6 @@ function getResolution -d "returns 1440 or 1080"
     end
 end
 
-
-
 function cdls 
     cd "$1"
     ls -la
