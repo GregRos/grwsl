@@ -1,2 +1,3 @@
 #!/usr/bin/fish
+jetbrains_setup_fonts /home/gr/.config/JetBrains/PhpStorm2021.3/options
 /opt/phpstorm/bin/phpstorm.sh $argv

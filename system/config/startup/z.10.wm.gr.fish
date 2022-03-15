@@ -1,8 +1,7 @@
 
 begin
     if status is-login
-        set -gx DISPLAY (gr-display)
-
+        set -gx DISPLAY (gr-hostip):0
         set -gx QT_STYLE_OVERRIDE breeze
         if test "$BIG_MONITOR" = 1
             set -gx GDK_DPI_SCALE 1.3

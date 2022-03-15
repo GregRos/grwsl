@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+import re
+from os import environ
+from subprocess import run, PIPE
+from typing import List
+import sys
+
+def parse_ipconfig():
+    output=run("ipconfig.exe", stdout=PIPE, encoding="ascii").stdout
+    connection_pat=re.compile(r"Ethernet adapter vEthernet \(WSL\):\n\n(?P<text>[\S\s]*?)Default Gateway")
+    block=connection_pat.search(output)[0]
+    ip_pat=re.compile(r"IPv4 Address[\s.]*: (?P<IP>.*)$", re.M)
+    return ip_pat.search(block).group("IP")
+
+ip_file=f"{environ.get('GRWSL')}/tools/.cache/ip"
+
+if len(sys.argv) > 1 and sys.argv[1] == "force":
+    ip=parse_ipconfig()
+    open(ip_file, "w").write(ip)
+    print(ip)
+else:
+    print(open(ip_file).read())

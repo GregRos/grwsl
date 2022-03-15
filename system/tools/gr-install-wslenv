@@ -13,10 +13,10 @@ begin
     rm -f "$config/fish/conf.d/*.gr.fish"
 
     for file in (status dirname)/../config/startup/*.gr.fish
-        ln -sf $file "$config/fish/conf.d/"(basename $file)
+        ln -sf $file (realpath "$config/fish/conf.d/"(basename $file))
     end
-    for file in (status dirname)/../config/startup/*.grf.fish
-        ln -sf $file "$config/fish/functions/"(basename $file)
+    for file in (status dirname)/../config/functions/*.fish
+        ln -sf $file (realpath "$config/fish/functions/"(basename $file))
     end
 
 

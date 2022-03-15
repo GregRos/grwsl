@@ -1,5 +1,6 @@
 #!/usr/bin/fish
 begin
+    set -gx DISPLAY (gr-hostip force):0
     xrdb -load ~/.Xresources
     # this is needed to reload GTK settings on X server startup
     lxappearance &
@@ -18,5 +19,4 @@ begin
     else
         set font_size 16
     end
-
 end

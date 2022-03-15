@@ -1,7 +1,13 @@
 #!/usr/bin/fish
-if set -q BIG_MONITOR
+if test "$BIG_MONITOR" = "1"
     set -gx GDK_DPI_SCALE 1.4
+    set -g vmoptions "
+    -Dsmartgit.ui.dpiFactor=2
+    -Dsmartgit.ui.dpiAutoScaling=false
+    "
 else
-    set -gx GDK_DPI_SCALE 0.5
+    set -gx GDK_DPI_SCALE 1.25
+    set -g vmoptions ""
 end
+echo "$vmoptions" > /home/gr/.config/smartgit/smartgit.vmoptions
 /opt/smartgit/bin/smartgit.sh $argv

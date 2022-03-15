@@ -7,7 +7,7 @@ function getResolution -d "returns 1440 or 1080"
 end
 
 function cdls 
-    cd "$1"
+    cd $argv[1]
     ls -la
 end
 
@@ -97,3 +97,57 @@ function mcd --description "Menu based cd command"
         return 1
     end
 end
+
+function jetbrains_setup_fonts
+    set -l options $argv[1]
+    echo "Setting up fonts for $options"
+    set big $BIG_MONITOR
+    
+    if test "$BIG_MONITOR" = 1
+        set editor_font 18
+        set font_size 20
+    else
+        set editor_font 15
+        set font_size 16
+    end
+
+    edit_xml_file $options/editor-font.xml "//option[@name='FONT_SIZE']/@value" $editor_font
+    edit_xml_file $options/other.xml "//option[@name='fontSize']/@value" $font_size
+    echo "Done..."
+end
+
+function edit_xml_file
+    set file $argv[1]
+    set xpath $argv[2]
+    set value $argv[3]
+    set new_xml (cat $file \
+        | xmlstarlet fo -D \
+        | xmlstarlet ed -u "$xpath" -v $value \
+        | string collect)
+
+    if test -n "$new_xml"
+        echo "$new_xml" >"$file"
+    else
+        echo "In edit_xml_file - result is empty"
+    end
+end
+
+
+function jetbrains_setup_fonts
+    set -l options $argv[1]
+    echo "Setting up fonts for $options"
+    set big $BIG_MONITOR
+
+    if test "$BIG_MONITOR" = 1
+        set editor_font 18
+        set font_size 20
+    else
+        set editor_font 15
+        set font_size 16
+    end
+
+    edit_xml_file $options/editor-font.xml "//option[@name='FONT_SIZE']/@value" $editor_font
+    edit_xml_file $options/other.xml "//option[@name='fontSize']/@value" $font_size
+    echo "Done..."
+end
+
