@@ -11,6 +11,5 @@ begin
     if not string match _NONE_ "$new_cwd"
         cd "$new_cwd"
     end
-    set -gx DISPLAY "$DISPLAY"
-    $argv[2..-1]
+    fish --login -c $argv[2..-1]
 end

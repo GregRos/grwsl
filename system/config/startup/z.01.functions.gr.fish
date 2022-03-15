@@ -1,16 +1,13 @@
-function getResolution -d "returns 1440 or 1080"
-    if xdpyinfo | grep -B 2 resolution | string collect | string match -e "1440 pixels" >/dev/null
-        echo 1440
-    else
-        echo 1080
-    end
+
+
+function cdls 
+    cd "$1"
+    ls -la
 end
 
-
-function ffind 
-    echo A B C
+function wrun 
+    cmd.exe /c "$argv"
 end
-
 
 # https://github.com/fish-shell/fish-shell/issues/2847
 # Provide a menu of the directories recently navigated to and ask the user to

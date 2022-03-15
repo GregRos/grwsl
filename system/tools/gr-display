@@ -1,0 +1,7 @@
+#!/usr/bin/fish
+set cache_file (status dirname)/.cache/ip
+if test (count $argv) != 0
+    echo (ipconfig.exe | grep -Po --color=never '172\.\d*\.\d*\.\d*') > $cache_file
+end
+echo (cat "$cache_file"):0
+

@@ -30,7 +30,7 @@ begin
     ln -sf "$grconfig/app/pycharm/pycharm64.vmoptions" "$config/JetBrains/$pycharm_version/pycharm64.vmoptions"
 
     # create symlinks to specific Windows binaries instead of allowing them all
-    set winb "cmd.exe" "clip.exe" "ipconfig.exe"
+    set winb "cmd.exe" "clip.exe" "ipconfig.exe" "mklink.exe"
     
     for bin in $winb
         ln -s "/mnt/c/Windows/System32/$bin" "$HOME/grwsl/apps/$bin"

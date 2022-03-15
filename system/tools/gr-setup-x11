@@ -14,9 +14,4 @@ begin
         set font_size 16
     end
 
-    if test (getResolution) = 1440
-        set -Ux BIG_MONITOR 1
-    else
-        set -Ux BIG_MONITOR 0
-    end
 end
