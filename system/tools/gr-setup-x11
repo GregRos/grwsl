@@ -1,22 +1,25 @@
 #!/usr/bin/fish
 begin
-    set -gx DISPLAY (gr-hostip force):0
-    xrdb -load ~/.Xresources
-    # this is needed to reload GTK settings on X server startup
-    lxappearance &
-    # wait until it loads
-    sleep 0.5
-    kill -9 $last_pid
-    # kill it
-    if test (getResolution) = 1440
-        set -Ux BIG_MONITOR 1
-    else
-        set -Ux BIG_MONITOR 0
-    end
+    for index in (seq 0 1)
+        set -gx DISPLAY (gr-hostip force):$index
+        echo "Setting up $DISPLAY"
+        xrdb -load ~/.Xresources
+        # this is needed to reload GTK settings on X server startup
+        lxappearance &
+        # wait until it loads
+        sleep 0.5
+        kill -9 $last_pid
+        # kill it
+        if test (getResolution) = 1440
+            set -Ux BIG_MONITOR 1
+        else
+            set -Ux BIG_MONITOR 0
+        end
 
-    if test "$BIG_MONITOR" = 1
-        set font_size 12
-    else
-        set font_size 16
+        if test "$BIG_MONITOR" = 1
+            set font_size 12
+        else
+            set font_size 16
+        end
     end
 end

@@ -36,7 +36,9 @@ begin
     set winb "cmd.exe" "clip.exe" "ipconfig.exe" "mklink.exe"
     
     for bin in $winb
-        ln -s "/mnt/c/Windows/System32/$bin" "$HOME/grwsl/apps/$bin"
+        ln -sf "/mnt/c/Windows/System32/$bin" "$HOME/grwsl/apps/$bin"
     end
+    sudo ln -sf "/mnt/c/Users/GregRosenbaum/AppData/Local/Programs/Microsoft VS Code/bin/code" /usr/bin/code
+    sudo ln -sf "$GRWSL/tools/grstart" /usr/bin/grstart
 end
 

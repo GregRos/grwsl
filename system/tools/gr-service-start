@@ -1,0 +1,13 @@
+#!/usr/bin/fish
+switch $argv[1]
+    case wamp
+        echo "Starting WAMP"
+        cd "$GOPATH/src/github.com/gammazero/nexus/nexusd"
+        ./nexusd -c etc/nexus.json
+    case sql
+        echo "Starting SQL proxy"
+        cd /home/gr/cloud-sql-proxy
+        ./cloud_sql_proxy -instances=databaserv0:europe-west4:responderdbv1=tcp:1433 -credential_file=./databaserv0-7502142e3abb.json
+    case '*'
+        echo Wrong name
+end

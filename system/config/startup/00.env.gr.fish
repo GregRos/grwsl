@@ -14,5 +14,9 @@ begin
         set -gx GOPATH $HOME/go
         set -gx NPM_TOKEN 64124ae3-05e2-4298-805c-1d8b19a4c2b3
         set -gx GCLOUD_ROOT /usr/lib/google-cloud-sdk
+
+        /home/gr/.fnm/fnm env --use-on-cd | source # fnm
+        fnm env | source
+
     end
 end

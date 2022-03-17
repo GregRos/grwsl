@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+set -gx DISPLAY (gr-hostip):1
+/usr/bin/konsole

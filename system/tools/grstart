@@ -1,0 +1,19 @@
+#!/bin/fish
+# Used to start things in WSL from Windows
+begin
+    set new_cwd $argv[1]
+    if string match -e "\\" "$new_cwd"
+        set new_cwd (wslpath -u "$new_cwd")
+    else if test "~" = "$new_cwd"
+        set new_cwd "$HOME"
+    end
+    if test "$new_cwd" != "_"; and test "$new_cwd" != "_NONE_"
+        cd "$new_cwd"
+    end
+    set -gx SHELL /usr/bin/fish
+    if not service dbus status 
+        sudo service dbus start
+    end
+    fish --login -c "$argv[2..-1]"
+end
+

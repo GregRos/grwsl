@@ -151,3 +151,6 @@ function jetbrains_setup_fonts
     echo "Done..."
 end
 
+function realwhich
+    realpath (which $argv)
+end
