@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+pod() {
+  echo "$(kubectl get pod -o=name --selector="app=$1" | sed 's/^.\{4\}//')"
+}
+
+podd() {
+  echo "pod/$(pod "$1")"
+}
+
+desc() {
+  kubectl describe $(podd "$1")
+}
+
+ctx() {
+  local context=""
+  if [[ -z "$1" ]]; then
+    kubectl config get-contexts
+  fi
+  case "$1" in
+  exp-stability--gpu)
+    context="@exp-stability--gpu@"
+    ;;
+  explorer-eu)
+    context="@@@explorer-eu@@@"
+    ;;
+  local)
+    context="docker-desktop"
+    ;;
+  *)
+    echo >&2 "Unknown context code '$1'"
+    exit 1
+    ;;
+  esac
+  kubectl config use-context ${context}
+}
+
+restart() {
+  kubectl rollout restart "deploy/$1"
+}
+
+venture() {
+  local what="deploy/$1"
+  if (("$#" > 1)); then
+    what="$what -c $2"
+  fi
+  kubectl exec -it $what -- /bin/bash
+}
+
+update_cfg() {
+  name="$1"
+  file="$2"
+  kubectl create configmap "$name" --dry-run="client" --from-file="$2" -o yaml | kubectl apply -f -
+}
+
+check_pod() {
+  kubectl describe pod $(pod "$1")
+}
+
+logs() {
+  kubectl logs -f "$(pod "$1")"
+}
+
+if declare -f "$1" >/dev/null; then
+  "$@"
+else
+  kubectl $@
+fi

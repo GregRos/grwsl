@@ -1,7 +1,7 @@
 #!/usr/bin/fish
 begin
-    for index in (seq 0 1)
-        set -gx DISPLAY (gr-hostip force):$index
+    for index in (seq 0 0)
+        set -Ux DISPLAY (gr-hostip force):$index
         echo "Setting up $DISPLAY"
         xrdb -load ~/.Xresources
         # this is needed to reload GTK settings on X server startup

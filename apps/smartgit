@@ -10,5 +10,4 @@ else
     set -g vmoptions ""
 end
 echo "$vmoptions" > /home/gr/.config/smartgit/smartgit.vmoptions
-set gx DISPLAY (gr-hostip):1
 /opt/smartgit/bin/smartgit.sh $argv
