@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+cd /winhome
+cmd.exe /c 'C:\ProgramData\chocolatey\bin\minikube.exe' $argv
+

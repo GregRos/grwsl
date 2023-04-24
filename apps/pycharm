@@ -1,3 +1,3 @@
 #!/usr/bin/fish
-jetbrains_setup_fonts /home/gr/.config/JetBrains/PyCharmCE2021.3/options
+jetbrains_setup_fonts /home/gr/.config/JetBrains/PyCharm2023.1/options
 /opt/pycharm/bin/pycharm.sh $argv

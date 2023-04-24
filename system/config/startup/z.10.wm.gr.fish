@@ -1,7 +1,6 @@
 
 begin
     if status is-login
-        set -gx DISPLAY (gr-hostip):0
         set -gx QT_STYLE_OVERRIDE breeze
         if test "$BIG_MONITOR" = 1
             set -gx QT_FONT_DPI 184

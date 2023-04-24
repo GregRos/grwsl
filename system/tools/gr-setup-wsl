@@ -8,10 +8,9 @@ begin
     # Fish startup scripts
     rm -f $config/fish/conf.d/*.gr.fish
     
-    sudo ln -sf "$grconfig/wsl.conf" "/etc/wsl.conf"
-    sudo ln -sf "$grconfig/resolv.conf" "/etc/resolv.conf"
     rm -f "$config/fish/conf.d/*.gr.fish"
-
+ 
+    mkdir -p ~/.config/fish/conf,d
     for file in (status dirname)/../config/startup/*.gr.fish
         ln -sf $file (realpath "$config/fish/conf.d/"(basename $file))
     end
